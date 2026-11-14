@@ -2463,6 +2463,8 @@ requestAnimationFrame(frame);
   pill.addEventListener('click',stop);
   var want=/[?&]auto=1\b/.test(location.search)||location.hash==='#auto';
   if(want)window.addEventListener('load',function(){setTimeout(start,1400);});
+  /* adding #auto to the address of a page that is already open does not reload it, so listen for the change too */
+  window.addEventListener('hashchange',function(){if(location.hash==='#auto')start();});
   SG.auto={start:start,stop:stop};
 })();
 </script>
